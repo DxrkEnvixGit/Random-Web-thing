@@ -2,13 +2,14 @@ body {
     margin: 0;
     height: 100vh;
     display: flex;
-    justify-content: center; /* horizontal center */
-    align-items: center;     /* vertical center */
+    flex-direction: column;   /* stack vertically */
+    justify-content: center;  /* center vertically */
+    align-items: center;      /* center horizontally */
     background-color: black;
+    text-align: center;       /* center text */
 }
 
 .btn {
-    position: relative;
     padding: 15px 30px;
     font-size: 24px;
     border: none;
@@ -16,22 +17,49 @@ body {
     color: white;
     background: rgba(78, 78, 78, 0.94);
     cursor: pointer;
-    z-index: 1;
-    transition: transform 2s ease-in, opacity 2s ease-in, box-shadow 0.3s ease-in;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center; /* ensures scaling is from center */
+    z-index: 10;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 2s ease;
 }
 
 .btn:hover {
+    transform: translate(-50%, -50%) scale(1.05);
     box-shadow: 0 0 20px rgb(255, 255, 255);
-    transform: scale(1.05);
 }
 
 .btn:active {
-    transform: scale(0.97); /* quick shrink */
-    transition: transform 0.15s ease; /* TEMPORARILY override */
+    transform: translate(-50%, -50%) scale(0.97);
+    transition: transform 0.15s ease;
+}
+
+
+.btn.clicked {
+    box-shadow: none;
+    transition: box-shadow 0.3s ease;
 }
 
 .btn.fly-away {
     transform: translateY(-200vh) scale(0.8); /* drift upward */
     opacity: 0;
     transition: transform 2s ease-in, opacity 2s ease-in; /* restore slow transition */
+}
+
+
+#message {
+    color: white;
+    font-size: 32px;
+    margin-top: 20px;
+    opacity: 0;                  /* invisible initially */
+    transform: translateY(50px); /* start below */
+    transition: transform 1s ease, opacity 1s ease;
+    display: block;              /* always in layout */
+}
+
+#message.show {
+    opacity: 1;                  /* fade in */
+    transform: translateY(0);    /* move to final position */
 }

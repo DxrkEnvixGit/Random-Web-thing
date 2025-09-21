@@ -10,15 +10,22 @@
     <button class="btn">hi!</button>
 </div>
 
-<script>
-    const btn = document.querySelector(".btn");
+<h1 id="message">Hello, World! 🎉</h1>
 
-    btn.addEventListener("click", function () {
-        // wait a little so shrink plays (150ms matches the :active transition)
+<script>
+    const btn = document.querySelector('.btn');
+    const message = document.getElementById('message');
+
+    btn.addEventListener('click', () => {
+        btn.classList.add('fly-away');
+        btn.classList.add('clicked');
+
         setTimeout(() => {
-            btn.classList.add("fly-away");
-        }, 150);
+            message.classList.add('show');
+        }, 500);
     });
+
 </script>
+
 </body>
 </html>
