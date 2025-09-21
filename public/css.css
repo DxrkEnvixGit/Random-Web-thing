@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: center;     /* vertical center */
+    background-color: black;
+}
+
+.btn {
+    position: relative;
+    padding: 15px 30px;
+    font-size: 24px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    background: rgba(78, 78, 78, 0.94);
+    cursor: pointer;
+    z-index: 1;
+    transition: transform 2s ease-in, opacity 2s ease-in, box-shadow 0.3s ease-in;
+}
+
+.btn:hover {
+    box-shadow: 0 0 20px rgb(255, 255, 255);
+    transform: scale(1.05);
+}
+
+.btn:active {
+    transform: scale(0.97); /* quick shrink */
+    transition: transform 0.15s ease; /* TEMPORARILY override */
+}
+
+.btn.fly-away {
+    transform: translateY(-200vh) scale(0.8); /* drift upward */
+    opacity: 0;
+    transition: transform 2s ease-in, opacity 2s ease-in; /* restore slow transition */
+}
